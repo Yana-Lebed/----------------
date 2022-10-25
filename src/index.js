@@ -55,6 +55,7 @@ function citySearch(event) {
     humidity.innerHTML = response.data.main.humidity;
     let wind = document.querySelector("#wind");
     wind.innerHTML = response.data.wind.speed;
+    curTemp = response.data.main.temp;
   }
   let city = `${cityName.value}`;
   let key = "3a3741f568b40f2a3c9fbb3b60567d17";
@@ -63,15 +64,21 @@ function citySearch(event) {
 }
 let cityForm = document.querySelector("#searching-form");
 cityForm.addEventListener("submit", citySearch);
-let curTemp = 23;
+let curTemp = null;
+
 function convertToFahrenheit(event) {
   event.preventDefault();
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = (curTemp * 9) / 5 + 32 + "°";
+  
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = curTemp + "°";
 }
